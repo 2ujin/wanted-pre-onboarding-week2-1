@@ -9,7 +9,6 @@ type ColorProps = {
 
 function Chips({ selected, text, setSegmentChips, segment }: ColorProps) {
     const sendViewStatus = (params: string) => {
-        console.log(params)
         setSegmentChips(params);
     };
 

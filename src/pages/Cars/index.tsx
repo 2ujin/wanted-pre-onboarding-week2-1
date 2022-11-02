@@ -5,6 +5,7 @@ import CarItem from '../../components/CarItem';
 import Chips from '../../components/Chips';
 import Header from '../../components/Header';
 import useAxios from '../../hooks/useAxios';
+import { flexBox } from '../../styles/mixin';
 import carAPI from '../../utils/api';
 
 type AttributeProps = {
@@ -76,6 +77,20 @@ function Cars() {
           setSegmentChips={setSegmentChips} selected={selectSegement === item.segment} text={item.text} segment={item.segment} />)}
       </ChipsWrapper>
 
+      {isLoading && (
+        <LoadingContainer>
+          로딩중 ...
+        </LoadingContainer>
+      )}
+
+      {carList && carList.length <= 0 && !isLoading && (
+        <LoadingContainer>
+          차량이 없습니다.
+        </LoadingContainer>
+      )}
+
+
+
       {carList.map((catItem: AttributeProps) => <CarItem {...catItem} />)}
     </>
   );
@@ -89,3 +104,9 @@ const ChipsWrapper = styled.div`
   border-bottom: 1px solid ${props => props.theme.mainColor};
 `
 
+const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+`;
