@@ -1,38 +1,67 @@
 import { createGlobalStyle } from 'styled-components';
-// import reset from 'styled-reset';
-import { flexBox } from './mixin';
+import reset from 'styled-reset';
 
-const GlobalStyles = createGlobalStyle` 
+const GlobalStyle = createGlobalStyle`
+    ${reset}
+    html {
+        height: initial;
+    }
 
-  body {
-    ${flexBox('column', 'center', 'center')};
-    overflow-x: hidden;
-    margin: 0;
-  }
+    body * {
+        z-index: 1;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    a{
+        text-decoration: none;
+    }
+    
+    input:focus {
+        color: black;
+        outline: none;
+    }
+    
+    textarea:focus {
+        outline: none;
+    }
+    
+    select:focus {
+        outline: none;
+    }
+    /* 웹 */
+    @media screen and (min-width: 769px) {
 
-  a{
-      text-decoration: none;
-      color: inherit;
-  }
-  *{
-      box-sizing: border-box;
-  }
-  input, textarea { 
-    -moz-user-select: auto;
-    -webkit-user-select: auto;
-    -ms-user-select: auto;
-    user-select: auto;
-  }
-  input:focus {
-    outline: none;
-  }
-
-  button {
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-  }
+        .Wrapperwidth{
+            width: 480px;
+        }
+        .header{
+            width: 480px;
+        }
+    }
+    
+    // 앱
+    @media screen and (max-width: 768px) {
+        .Wrapperwidth{
+            width: 100%;
+        }
+        .top{
+            width: 380px;
+        }
+    }
+    
+    .wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+    }
+    
+    .padding {
+        padding: 20px;
+    }
+  
 `;
 
-export default GlobalStyles;
+export default GlobalStyle;

@@ -24,3 +24,5 @@ yarn-error.log*
 
 # cache
 .eslintcache
+
+.husky/pre-commit

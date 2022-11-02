@@ -1,8 +1,7 @@
 const colors = {
-  backgroundColor: '#F6F8FA',
-  borderColor: '#D0D7DE',
-  pointColor: '#0969DA',
-  grayColor: '#848B92',
+  mainColor: '#000000',
+  secondaryColor: '#D9D9D9',
+  teriaryColor: '#0094FF',
 };
 
 export default colors;

@@ -1,22 +1,36 @@
-import { Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import Cars from './pages/Cars';
+import CarsDetail from './pages/CarsDetail';
 import { flexBox, responsive } from './styles/mixin';
 
 const Container = styled.div`
   width: 100vw;
   ${flexBox()};
-  padding: 30px;
+  margin: 0 auto;
+  overflow: scroll;
+  height: 100vh;
+  max-width: 480px;
+  -webkit-box-shadow: 0px 0px 22px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 22px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 22px -2px rgba(0, 0, 0, 0.75);
 
   ${responsive('phone')} {
     padding: 0;
+    height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    overflow: scroll;
   }
 `;
 
 function App() {
   return (
     <Container>
-      <div>test~</div>
-      <Routes />
+      <Routes>
+        <Route path="/cars" element={<Cars />} />
+        <Route path="/cars-detail" element={<CarsDetail />} />
+      </Routes>
     </Container>
   );
 }
