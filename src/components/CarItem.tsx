@@ -7,13 +7,27 @@ type AttributeProps = {
     attribute: {
         brand: string;
         name: string;
-        segment: 'ENUMC' | 'D' | 'E' | 'SUV';
-        fuelType: 'ENUMgasoline' | 'ev' | 'hybrid';
+        segment: 'C' | 'D' | 'E' | 'SUV';
+        fuelType: 'gasoline' | 'ev' | 'hybrid';
         imageUrl: string;
     },
     amount: number;
     createdAt: Date;
 }
+
+enum ENUM_SEGMENT {
+    C = '소형',
+    D = '중형',
+    E = '대형',
+    SUV = 'SUV'
+}
+
+enum ENUM_FUELTYPE {
+    gasoline = '가솔린',
+    ev = '전기',
+    hybrid = '하이브리드',
+}
+
 
 function CarItem({ attribute: { brand, name, segment, fuelType, imageUrl }, createdAt, amount }: AttributeProps) {
 
@@ -25,8 +39,8 @@ function CarItem({ attribute: { brand, name, segment, fuelType, imageUrl }, crea
                     <Title> {name} </Title>
                 </TitleWrapper>
                 <SegmentWrapper>
-                    <div>{segment} / {fuelType} </div>
-                    <div> 월 {amount}원 부터</div>
+                    <div>{ENUM_SEGMENT[segment]} / {ENUM_FUELTYPE[fuelType]} </div>
+                    <div> 월 {amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 부터</div>
                 </SegmentWrapper>
             </div>
             <ImgWrapper>

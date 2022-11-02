@@ -12,8 +12,8 @@ type AttributeProps = {
   attribute: {
     brand: string;
     name: string;
-    segment: 'ENUMC' | 'D' | 'E' | 'SUV';
-    fuelType: 'ENUMgasoline' | 'ev' | 'hybrid';
+    segment: 'C' | 'D' | 'E' | 'SUV';
+    fuelType: 'gasoline' | 'ev' | 'hybrid';
     imageUrl: string;
   },
   createdAt: Date;
@@ -61,7 +61,6 @@ function Cars() {
         onSuccess: (data: any) => {
           setCarList(data.payload)
           setIsLoading(false);
-          console.log(carList)
         },
         onError: (state: any) => {
           // navigate('/error', { state });
