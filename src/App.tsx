@@ -28,6 +28,7 @@ function App() {
   return (
     <Container>
       <Routes>
+        <Route path="/" element={<Cars />} />
         <Route path="/cars" element={<Cars />} />
         <Route path="/detail/:fuelType/:segment" element={<CarsDetail />} />
       </Routes>

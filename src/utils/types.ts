@@ -66,3 +66,8 @@ export type DetailTitleProps = {
     type?: 'segment' | 'fuel';
 };
 
+export type headerProps = {
+    isBackBtn: boolean;
+    text: string;
+};
+

@@ -1,14 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
-type headerProps = {
-    isBackBtn: boolean;
-    text: string;
-};
+import { headerProps } from '../utils/types';
 
 function Header({ isBackBtn, text }: headerProps) {
+    const navigate = useNavigate();
+    const onClick = () => navigate(-1);
+
     return (
         <HeaderWrapper>
-            {isBackBtn ? <BackBtn src="/icon/i_back.svg" /> : <div> </div>}
+            {isBackBtn ? <BackBtn src="/icon/i_back.svg" onClick={onClick} /> : <div> </div>}
             <Text>{text}</Text>
             <div> </div>
         </HeaderWrapper>

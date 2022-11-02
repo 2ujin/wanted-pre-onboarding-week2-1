@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { DetailTitleProps } from '../utils/types';
 
-function DetailContent({ subTitle, content, type }: DetailTitleProps) {
+function DetailContent({ subTitle, content }: DetailTitleProps) {
     return (
         <DetailTitleWrapper>
             <SubTitle>{subTitle}</SubTitle>
