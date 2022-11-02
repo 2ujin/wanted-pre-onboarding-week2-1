@@ -32,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
     }
     /* 웹 */
     @media screen and (min-width: 769px) {
-
         .Wrapperwidth{
             width: 480px;
         }
