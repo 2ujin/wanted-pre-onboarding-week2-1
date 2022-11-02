@@ -25,6 +25,12 @@ const carAPI = {
     const res = await axiosInstance.get('');
     return res;
   },
+
+  async getCarsDetail(params: { segment: string, fuelType: string }) {
+    const res = await axiosInstance.get('', { params });
+    return res;
+  },
+
 };
 
 export default carAPI;

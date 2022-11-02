@@ -29,7 +29,7 @@ function App() {
     <Container>
       <Routes>
         <Route path="/cars" element={<Cars />} />
-        <Route path="/cars-detail" element={<CarsDetail />} />
+        <Route path="/detail/:fuelType/:segment" element={<CarsDetail />} />
       </Routes>
     </Container>
   );

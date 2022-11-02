@@ -69,7 +69,8 @@
     "react/react-in-jsx-scope": "off", // jsx를 사용하기 위해 반드시 React를 import 하지 않아도 됨
     "react/prop-types": ["off"], // propTypes 설정하지 않아도 됨
     "no-use-before-define": ["off"],
-    "react/jsx-props-no-spreading": ["off"]
+    "react/jsx-props-no-spreading": ["off"],
+    "@typescript-eslint/ban-ts-ignore": ["off"]
   },
   "settings": {
     "import/resolver": {

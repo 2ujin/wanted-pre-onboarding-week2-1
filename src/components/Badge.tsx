@@ -1,10 +1,7 @@
 import styled from 'styled-components';
+import { TextProps } from '../utils/types';
 
-type BadgeProps = {
-    text: string;
-};
-
-function Badge({ text }: BadgeProps) {
+function Badge({ text }: TextProps) {
     return (
         <BadgeWrapper>
             {text}

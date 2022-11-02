@@ -1,24 +1,11 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CarItem from '../../components/CarItem';
 import Chips from '../../components/Chips';
 import Header from '../../components/Header';
 import useAxios from '../../hooks/useAxios';
-import { flexBox } from '../../styles/mixin';
 import carAPI from '../../utils/api';
-
-type AttributeProps = {
-  attribute: {
-    brand: string;
-    name: string;
-    segment: 'C' | 'D' | 'E' | 'SUV';
-    fuelType: 'gasoline' | 'ev' | 'hybrid';
-    imageUrl: string;
-  },
-  createdAt: Date;
-  amount: number
-}
+import { AttributeProps } from '../../utils/types';
 
 function Cars() {
   const segmentList = [
@@ -72,7 +59,7 @@ function Cars() {
     <>
       <Header isBackBtn={false} text='전체차량' />
       <ChipsWrapper>
-        {segmentList.map((item) => <Chips
+        {segmentList.map((item) => <Chips key={item.segment}
           setSegmentChips={setSegmentChips} selected={selectSegement === item.segment} text={item.text} segment={item.segment} />)}
       </ChipsWrapper>
 
@@ -88,9 +75,7 @@ function Cars() {
         </LoadingContainer>
       )}
 
-
-
-      {carList.map((catItem: AttributeProps) => <CarItem {...catItem} />)}
+      {carList.map((catItem: AttributeProps) => <CarItem key={catItem.attribute.id} {...catItem} />)}
     </>
   );
 }

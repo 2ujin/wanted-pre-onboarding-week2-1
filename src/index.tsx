@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import GlobalStyle from "./styles/GlobalStyles";
 import colors from "./styles/theme";
-// router
+
 
 // style
 ReactDOM.render(

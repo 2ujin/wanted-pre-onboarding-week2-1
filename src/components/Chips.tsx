@@ -1,20 +1,14 @@
 import styled from 'styled-components';
-
-type ColorProps = {
-    selected: boolean;
-    text: string;
-    segment: string;
-    setSegmentChips: (params: string) => void
-};
+import { ColorProps } from '../utils/types';
 
 function Chips({ selected, text, setSegmentChips, segment }: ColorProps) {
-    const sendViewStatus = (params: string) => {
+    const sendSegmentStatus = (params: string) => {
         setSegmentChips(params);
     };
 
     return (
-        <ChipsWrapper className={selected ? 'selected' : 'nonselected'} onClick={(e) => {
-            sendViewStatus(segment);
+        <ChipsWrapper className={selected ? 'selected' : 'nonselected'} onClick={() => {
+            sendSegmentStatus(segment);
         }}>
             {text}
         </ChipsWrapper>

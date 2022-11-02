@@ -1,38 +1,16 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import Badge from './Badge';
-
-
-type AttributeProps = {
-    attribute: {
-        brand: string;
-        name: string;
-        segment: 'C' | 'D' | 'E' | 'SUV';
-        fuelType: 'gasoline' | 'ev' | 'hybrid';
-        imageUrl: string;
-    },
-    amount: number;
-    createdAt: Date;
-}
-
-enum ENUM_SEGMENT {
-    C = '소형',
-    D = '중형',
-    E = '대형',
-    SUV = 'SUV'
-}
-
-enum ENUM_FUELTYPE {
-    gasoline = '가솔린',
-    ev = '전기',
-    hybrid = '하이브리드',
-}
+import { AttributeProps, ENUM_SEGMENT, ENUM_FUELTYPE } from '../utils/types';
 
 
 function CarItem({ attribute: { brand, name, segment, fuelType, imageUrl }, createdAt, amount }: AttributeProps) {
+    const navigate = useNavigate();
+    const onClickItem = () => navigate(`/detail/${fuelType}/${segment}`);
 
     return (
-        <CarItemWrapper>
+        <CarItemWrapper onClick={onClickItem}>
             <div>
                 <TitleWrapper>
                     <Title> {brand} </Title>
