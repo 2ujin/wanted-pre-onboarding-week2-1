@@ -15,14 +15,11 @@ type AttributeProps = {
     fuelType: 'ENUMgasoline' | 'ev' | 'hybrid';
     imageUrl: string;
   },
+  createdAt: Date;
   amount: number
 }
 
 function Cars() {
-  const dd: AttributeProps = {
-    attribute: { brand: '기아', name: 'EV6', segment: 'ENUMC', fuelType: 'ENUMgasoline', imageUrl: 'https://velog.velcdn.com/images/velopert/post/043d71d9-5a66-4795-b960-ba7ff9384947/image.png' },
-    amount: 2000
-  }
   const segmentList = [
     { text: '전체', segment: 'all' },
     { text: '대형', segment: 'E' },
@@ -46,7 +43,6 @@ function Cars() {
         onSuccess: (data: any) => {
           setCarList(data.payload)
           setIsLoading(false);
-          console.log(carList)
         },
         onError: (state: any) => {
           // navigate('/error', { state });
@@ -64,6 +60,7 @@ function Cars() {
         onSuccess: (data: any) => {
           setCarList(data.payload)
           setIsLoading(false);
+          console.log(carList)
         },
         onError: (state: any) => {
           // navigate('/error', { state });
@@ -79,7 +76,7 @@ function Cars() {
           setSegmentChips={setSegmentChips} selected={selectSegement === item.segment} text={item.text} segment={item.segment} />)}
       </ChipsWrapper>
 
-      {carList.map((catItem: AttributeProps) => <CarItem isNew={false} {...catItem} />)}
+      {carList.map((catItem: AttributeProps) => <CarItem {...catItem} />)}
     </>
   );
 }

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import moment from 'moment';
 import Badge from './Badge';
+
 
 type AttributeProps = {
     attribute: {
@@ -9,11 +11,12 @@ type AttributeProps = {
         fuelType: 'ENUMgasoline' | 'ev' | 'hybrid';
         imageUrl: string;
     },
-    isNew: boolean,
-    amount: number
+    amount: number;
+    createdAt: Date;
 }
 
-function CarItem({ attribute: { brand, name, segment, fuelType, imageUrl }, isNew, amount }: AttributeProps) {
+function CarItem({ attribute: { brand, name, segment, fuelType, imageUrl }, createdAt, amount }: AttributeProps) {
+
     return (
         <CarItemWrapper>
             <div>
@@ -27,12 +30,12 @@ function CarItem({ attribute: { brand, name, segment, fuelType, imageUrl }, isNe
                 </SegmentWrapper>
             </div>
             <ImgWrapper>
+                <>
                 <Img src={imageUrl} />
                 {
-                    isNew ? null : <BadgeWrapper>
-                        <Badge text="신상" />
-                    </BadgeWrapper>
+                        moment().format('YYYY-MM-DD') < moment(createdAt).add(1, 'day').format('YYYY-MM-DD') ? <BadgeWrapper> <Badge text="신상" /></BadgeWrapper> : null
                 }
+                </>
             </ImgWrapper>
         </CarItemWrapper>
     );
