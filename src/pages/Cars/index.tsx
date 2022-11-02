@@ -1,5 +1,11 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import CarItem from '../../components/CarItem';
+import Chips from '../../components/Chips';
 import Header from '../../components/Header';
+import useAxios from '../../hooks/useAxios';
+import carAPI from '../../utils/api';
 
 type AttributeProps = {
   attribute: {
@@ -9,25 +15,80 @@ type AttributeProps = {
     fuelType: 'ENUMgasoline' | 'ev' | 'hybrid';
     imageUrl: string;
   },
-  isNew?: boolean,
   amount: number
 }
 
 function Cars() {
   const dd: AttributeProps = {
     attribute: { brand: '기아', name: 'EV6', segment: 'ENUMC', fuelType: 'ENUMgasoline', imageUrl: 'https://velog.velcdn.com/images/velopert/post/043d71d9-5a66-4795-b960-ba7ff9384947/image.png' },
-    isNew: false,
     amount: 2000
   }
+  const segmentList = [
+    { text: '전체', segment: 'all' },
+    { text: '대형', segment: 'E' },
+    { text: '중형', segment: 'D' },
+    { text: '소형', segment: 'ENUMC' },
+    { text: '전기', segment: 'SUV' },
+  ];
+
+  const [selectSegement, setSegement] = useState('all');
+  const [carList, setCarList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const getCars = useAxios(carAPI.getCars);
+
+
+  useEffect(() => {
+    setIsLoading(true);
+    getCars(
+      [],
+      selectSegement !== 'all' ? { segment: selectSegement } : '',
+      {
+        onSuccess: (data: any) => {
+          setCarList(data.payload)
+          setIsLoading(false);
+          console.log(carList)
+        },
+        onError: (state: any) => {
+          // navigate('/error', { state });
+        },
+      }
+    );
+  }, []);
+
+
+  const setSegmentChips = (value: string) => {
+    setSegement(value);
+    getCars([],
+      selectSegement !== 'all' ? { segment: selectSegement } : '',
+      {
+        onSuccess: (data: any) => {
+          setCarList(data.payload)
+          setIsLoading(false);
+        },
+        onError: (state: any) => {
+          // navigate('/error', { state });
+        },
+      })
+  };
+
   return (
     <>
       <Header isBackBtn={false} text='전체차량' />
-      {/* <Chips type="one" text="테스트버튼" />
-      <Badge text="신규" /> */}
-      {/* <CarItem isNew={false} {...dd} /> */}
+      <ChipsWrapper>
+        {segmentList.map((item) => <Chips
+          setSegmentChips={setSegmentChips} selected={selectSegement === item.segment} text={item.text} segment={item.segment} />)}
+      </ChipsWrapper>
+
+      {carList.map((catItem: AttributeProps) => <CarItem isNew={false} {...catItem} />)}
     </>
   );
 }
 
 export default Cars;
+
+const ChipsWrapper = styled.div`
+  display: flex;
+  padding: 6px 12px;
+  border-bottom: 1px solid ${props => props.theme.mainColor};
+`
 
